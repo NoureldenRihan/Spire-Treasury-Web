@@ -1,12 +1,14 @@
 import { useState } from "react";
 
-function Input({
+// A generic Input Component for Various Input Usages
+
+function GenericInput({
   label,
   onChange,
   value,
   required = false,
   secureInput = false,
-  keyboardType = "default",
+  type = "default",
   placeholderText,
 }) {
   const [hidePassword, setHidePassword] = useState(true);
@@ -17,21 +19,21 @@ function Input({
         <input
           onChange={onChange}
           value={value}
-          keyboardType={keyboardType}
+          type={secureInput ? (hidePassword ? "password" : "default") : type}
           placeholder={placeholderText}
           required={required}
         />
         <button
           style={{ display: secureInput ? "flex" : "none" }}
-          onPress={() => {
+          onClick={() => {
             setHidePassword((prevState) => !prevState);
           }}
         >
-          eye
+          eye{/* Needs to be updated into an SVG Icon */}
         </button>
       </div>
     </>
   );
 }
 
-export default Input;
+export default GenericInput;

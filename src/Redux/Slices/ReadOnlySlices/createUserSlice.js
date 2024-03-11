@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// A Read Only Slice to access a Blueprint of User Data Items for API Submission
+
 const initialState = {
   userData: [
     {
