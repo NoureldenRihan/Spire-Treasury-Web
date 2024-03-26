@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { useState } from "react";
-import GenericInput from "../../Components/GenericInput";
+import GenericInput from "../../Components/GenericInput/GenericInput";
 import apiHandlers from "../../apiHandlers/apiHandlers";
 import "./Signup.css";
 

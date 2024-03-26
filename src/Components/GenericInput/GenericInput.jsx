@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./GenericInput.css";
 
 // A generic Input Component for Various Input Usages
 

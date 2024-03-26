@@ -4,6 +4,13 @@ import "./index.css";
 import App from "./App";
 import { Provider } from "react-redux";
 import { store } from "./Redux/store";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+AOS.init({
+  once: true,
+  useClassNames: false,
+});
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
