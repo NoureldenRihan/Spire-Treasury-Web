@@ -5,6 +5,7 @@ import "./GenericInput.css";
 
 function GenericInput({
   label,
+  showlabel = true,
   onChange,
   value,
   required = false,
@@ -15,7 +16,7 @@ function GenericInput({
   const [hidePassword, setHidePassword] = useState(true);
   return (
     <>
-      <label>{label}</label>
+      {showlabel ? <label>{label}</label> : ""}
       <div>
         <input
           onChange={onChange}

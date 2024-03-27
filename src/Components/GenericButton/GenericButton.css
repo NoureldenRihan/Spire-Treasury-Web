@@ -1,0 +1,36 @@
+.commonButton {
+  border-radius: 9999px;
+  border: 0;
+  padding: 10px 35px;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: 0.3s;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.extraButton {
+  background-color: transparent;
+  border-radius: 9999px;
+  border: 0;
+  cursor: pointer;
+  transition: 0.3s;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: var(--Golden);
+}
+
+.commonButton:hover,
+.extraButton:hover {
+  transform: translateY(-3px);
+}
+
+.type1 {
+  color: var(--Black);
+  background-color: var(--Golden);
+}
+
+.type2 {
+  color: var(--Golden);
+  background-color: var(--Black20);
+}

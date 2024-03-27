@@ -1,7 +1,28 @@
+/* Variables */
+
+:root {
+  --Black: #000000;
+  --Black05: rgba(0, 0, 0, 0.05);
+  --Black20: rgba(0, 0, 0, 0.2);
+  --Black30: rgba(0, 0, 0, 0.3);
+  --Black50: rgba(0, 0, 0, 0.5);
+  --Black70: rgba(0, 0, 0, 0.7);
+  --Golden: #fff200;
+  --Yellow: #ebff00;
+  --Yellow30: rgba(235, 255, 0, 0.3);
+  --Yellow50: rgba(235, 255, 0, 0.5);
+  --Yellow70: rgba(235, 255, 0, 0.7);
+  --White: #ffffff;
+  --LightGray: #f1f1f1;
+}
+
+/* General Rules */
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: sans-serif;
 }
 
 a {

@@ -9,7 +9,7 @@ const initialState = {
       fieldType: "text",
       minimumChars: 1,
       required: true,
-      placeholderText: "Your First Name",
+      placeholderText: "First Name",
       secureInput: false,
     },
     {
@@ -17,7 +17,7 @@ const initialState = {
       fieldType: "text",
       minimumChars: 1,
       required: true,
-      placeholderText: "Your Last Name",
+      placeholderText: "Last Name",
       secureInput: false,
     },
     {
@@ -25,7 +25,7 @@ const initialState = {
       fieldType: "text",
       minimumChars: 1,
       required: true,
-      placeholderText: "Your Full Name",
+      placeholderText: "Full Name",
       secureInput: false,
     },
     {
@@ -33,7 +33,7 @@ const initialState = {
       fieldType: "email",
       minimumChars: 1,
       required: true,
-      placeholderText: "email@email.com",
+      placeholderText: "Email",
       secureInput: false,
     },
     {
@@ -41,7 +41,7 @@ const initialState = {
       fieldType: "password",
       minimumChars: 8,
       required: true,
-      placeholderText: "********",
+      placeholderText: "Password",
       secureInput: true,
     },
     {
@@ -49,7 +49,7 @@ const initialState = {
       fieldType: "text",
       minimumChars: 1,
       required: false,
-      placeholderText: "ABC1234",
+      placeholderText: "Special Code",
       secureInput: false,
     },
   ],
