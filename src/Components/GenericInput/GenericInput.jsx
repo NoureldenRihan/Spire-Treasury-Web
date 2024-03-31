@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./GenericInput.css";
+import { Eye, ClosedEye, UnifiedSVGSize } from "../../Constants/Icons";
 
 // A generic Input Component for Various Input Usages
 
@@ -16,23 +17,31 @@ function GenericInput({
   const [hidePassword, setHidePassword] = useState(true);
   return (
     <>
-      {showlabel ? <label>{label}</label> : ""}
-      <div>
+      {showlabel ? <label className="GenericInputLabel">{label}</label> : ""}
+      <div className="GenericInputContainer">
         <input
+          className={
+            secureInput ? "GenericInputField eyeIcon" : "GenericInputField"
+          }
           onChange={onChange}
-          value={value}
+          value={value} // Needs More Looking into it
           type={secureInput ? (hidePassword ? "password" : "default") : type}
           placeholder={placeholderText}
           required={required}
         />
-        <button
+        <div
+          className="GenericInputSecureIcon"
           style={{ display: secureInput ? "flex" : "none" }}
           onClick={() => {
             setHidePassword((prevState) => !prevState);
           }}
         >
-          eye{/* Needs to be updated into an SVG Icon */}
-        </button>
+          {hidePassword ? (
+            <ClosedEye width={UnifiedSVGSize} height={UnifiedSVGSize} />
+          ) : (
+            <Eye width={UnifiedSVGSize} height={UnifiedSVGSize} />
+          )}
+        </div>
       </div>
     </>
   );

@@ -7,18 +7,31 @@ function GenericButton({
   onClick,
   styleType = "type1",
   extra = false,
-  extraText,
-  extraOnClick,
+  extraBtnText,
+  extraBtnOnClick,
+  extraBtnStyleType,
 }) {
   return (
     <>
-      <button className={"commonButton" + " " + styleType} onClick={onClick}>
-        {text}
-      </button>
-      <br />
+      {text ? (
+        <>
+          <button
+            className={"commonButton" + " " + styleType}
+            onClick={onClick}
+          >
+            {text}
+          </button>
+          <br />
+        </>
+      ) : (
+        ""
+      )}
       {extra ? (
-        <button className={"extraButton"} onClick={extraOnClick}>
-          {extraText}
+        <button
+          className={"extraButton" + " " + extraBtnStyleType}
+          onClick={extraBtnOnClick}
+        >
+          {extraBtnText}
         </button>
       ) : (
         ""

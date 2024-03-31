@@ -6,21 +6,24 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  background-color: var(--LightGray);
 }
 
 .signupContainer {
   display: flex;
-  width: 60%;
   height: fit-content;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--Black05);
-  border-radius: 30px;
-  padding: 70px;
-  z-index: 10;
-  backdrop-filter: blur(7px);
-  box-shadow: 5px 5px 10px var(--Black50);
+  text-align: center;
+}
+
+.goToLogin {
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
+
+.goToLogin p {
+  display: inline;
+  padding-right: 5px;
 }
 
 .signupForm {

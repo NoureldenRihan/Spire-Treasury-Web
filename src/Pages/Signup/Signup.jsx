@@ -50,14 +50,17 @@ function Signup() {
     <div className="signupPage">
       <div className="signupContainer">
         <div>
-          <h2>Welcome,</h2>
-          <h3>Please Enter Your Info for Signing Up</h3>
-          <h3>Already Have An Account?</h3>
-          <GenericButton
-            text={"Login"}
-            styleType="type2"
-            onClick={() => navigate("/login")}
-          />
+          <h2>Create your Spire Treasury account</h2>
+          <div className="goToLogin">
+            <p>Already Have An Account?</p>
+            <GenericButton
+              extra={true}
+              extraBtnText={"Login"}
+              extraBtnStyleType={"extraType2"}
+              extraBtnOnClick={() => navigate("/login")}
+            />
+          </div>
+
           <div className="signupForm">
             {createUserData.map((Data, index) => (
               <GenericInput
