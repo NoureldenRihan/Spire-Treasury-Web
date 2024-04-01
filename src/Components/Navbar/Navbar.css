@@ -1,0 +1,66 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logoContainer {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logoContainer a {
+  width: 30%;
+}
+
+.logoContainer a img {
+  width: 100%;
+}
+
+.navOptions {
+  width: 60%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 10%;
+}
+
+.option {
+  font-size: 15px;
+  margin-left: 25px;
+  transition: 0.3s;
+  position: relative;
+}
+
+.option::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--Black);
+  transition: 0.2s;
+}
+
+.option::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--Black);
+  transition: 0.2s;
+}
+
+.option:hover {
+  transform: translateY(-3px);
+}
+
+.option:hover::before,
+.option:hover::after {
+  width: 100%;
+}
