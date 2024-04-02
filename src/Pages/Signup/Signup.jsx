@@ -6,9 +6,12 @@ import apiHandlers from "../../apiHandlers/apiHandlers";
 import "./Signup.css";
 import GenericButton from "../../Components/GenericButton/GenericButton";
 import Navbar from "../../Components/Navbar/Navbar";
+import GenericStatusMessage from "../../Components/GenericStatusMessage/GenericStatusMessage";
 
-//TODO Needs to show errors and proceed when no error
-//TODO Values Need to be hidden from DOM
+//TODO Needs to proceed when no error
+//TODO Prevent New Requests Until Current one is done
+//TODO Add Loading State to the sign up button
+//TODO Make it Responsive for different screen sizes
 
 function Signup() {
   const [firstName, setFirstName] = useState("");
@@ -17,6 +20,9 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [specialCode, setSpecialCode] = useState("");
+  const [showStatusMsg, setShowStatusMsg] = useState(false);
+  const [isStatusError, setIsStatusError] = useState(false);
+  const [statusMsg, setStatusMsg] = useState("");
 
   // organize state setters and getters for one time addition through a forEach
   const stateDistributer = [
@@ -34,7 +40,9 @@ function Signup() {
   const createUserData = useSelector((state) => state.createUserData.userData);
 
   // signup function Groups Form Data and makes a "CreateUser" request through apiHandlers
-  const signup = () => {
+  const signup = async (e) => {
+    e.preventDefault();
+
     const signupFormData = {
       firstName: firstName,
       lastName: lastName,
@@ -45,7 +53,14 @@ function Signup() {
     };
 
     console.log(signupFormData);
-    apiHandlers.CreateUser(signupFormData);
+
+    const data = await apiHandlers.CreateUser(signupFormData);
+    console.log(data);
+    if (data.didAnErrorOccur) {
+      setIsStatusError(true);
+      setStatusMsg(data.msg);
+      setShowStatusMsg(true);
+    }
   };
 
   return (
@@ -65,7 +80,7 @@ function Signup() {
               />
             </div>
 
-            <div className="signupForm">
+            <form onSubmit={signup} className="signupForm">
               {createUserData.map((Data, index) => (
                 <GenericInput
                   key={Data.fieldName}
@@ -80,8 +95,16 @@ function Signup() {
                   secureInput={Data.secureInput}
                 />
               ))}
-              <GenericButton text={"Sign Up"} onClick={signup} />
-            </div>
+              <GenericButton text={"Sign Up"} />
+              {showStatusMsg ? (
+                <GenericStatusMessage
+                  isError={isStatusError}
+                  statusText={statusMsg}
+                />
+              ) : (
+                ""
+              )}
+            </form>
           </div>
         </div>
       </div>

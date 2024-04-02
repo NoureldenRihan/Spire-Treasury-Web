@@ -1,0 +1,15 @@
+.statusText {
+  display: block;
+  padding: 20px;
+  font-size: 25px;
+  font-weight: bold;
+  text-align: "center";
+}
+
+.error {
+  color: var(--Red);
+}
+
+.success {
+  color: var(--Green);
+}

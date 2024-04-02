@@ -24,7 +24,6 @@ function GenericInput({
             secureInput ? "GenericInputField eyeIcon" : "GenericInputField"
           }
           onChange={onChange}
-          value={value} // Needs More Looking into it
           type={secureInput ? (hidePassword ? "password" : "default") : type}
           placeholder={placeholderText}
           required={required}

@@ -18,7 +18,7 @@ const CreateUser = async (Data) => {
       const data = await response.json();
       console.log(data);
       console.log(`Error: ${response.status} ${data.error}`);
-      return null;
+      return data;
     }
   } catch (error) {
     console.log("Error: ", error);
