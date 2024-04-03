@@ -8,7 +8,6 @@ import GenericButton from "../../Components/GenericButton/GenericButton";
 import Navbar from "../../Components/Navbar/Navbar";
 import GenericStatusMessage from "../../Components/GenericStatusMessage/GenericStatusMessage";
 
-//TODO Needs to proceed when no error
 //TODO Prevent New Requests Until Current one is done
 //TODO Add Loading State to the sign up button
 //TODO Make it Responsive for different screen sizes
@@ -54,12 +53,16 @@ function Signup() {
 
     console.log(signupFormData);
 
-    const data = await apiHandlers.CreateUser(signupFormData);
-    console.log(data);
-    if (data.didAnErrorOccur) {
-      setIsStatusError(true);
-      setStatusMsg(data.msg);
-      setShowStatusMsg(true);
+    const response = await apiHandlers.CreateUser(signupFormData);
+    console.log(response);
+    if (response.status === 200) {
+      navigate("/home");
+    } else if (response.status === 500) {
+      if (response.data.didAnErrorOccur) {
+        setIsStatusError(true);
+        setStatusMsg(response.data.msg);
+        setShowStatusMsg(true);
+      }
     }
   };
 

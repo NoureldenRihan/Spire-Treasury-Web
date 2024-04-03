@@ -13,12 +13,12 @@ const CreateUser = async (Data) => {
     if (response.ok) {
       const data = await response.json();
       console.log(response.status, data);
-      return data;
+      return { status: response.status, data };
     } else {
       const data = await response.json();
       console.log(data);
       console.log(`Error: ${response.status} ${data.error}`);
-      return data;
+      return { status: response.status, data };
     }
   } catch (error) {
     console.log("Error: ", error);
