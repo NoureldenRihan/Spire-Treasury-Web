@@ -8,9 +8,8 @@ import GenericButton from "../../Components/GenericButton/GenericButton";
 import Navbar from "../../Components/Navbar/Navbar";
 import GenericStatusMessage from "../../Components/GenericStatusMessage/GenericStatusMessage";
 
-//TODO Prevent New Requests Until Current one is done
-//TODO Add Loading State to the sign up button
 //TODO Make it Responsive for different screen sizes
+//TODO Fix width when error is displayed
 
 function Signup() {
   const [firstName, setFirstName] = useState("");
@@ -19,6 +18,7 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [specialCode, setSpecialCode] = useState("");
+  const [requestInProgress, setRequestInProgress] = useState(false);
   const [showStatusMsg, setShowStatusMsg] = useState(false);
   const [isStatusError, setIsStatusError] = useState(false);
   const [statusMsg, setStatusMsg] = useState("");
@@ -41,6 +41,7 @@ function Signup() {
   // signup function Groups Form Data and makes a "CreateUser" request through apiHandlers
   const signup = async (e) => {
     e.preventDefault();
+    setRequestInProgress(true);
 
     const signupFormData = {
       firstName: firstName,
@@ -64,6 +65,8 @@ function Signup() {
         setShowStatusMsg(true);
       }
     }
+
+    setRequestInProgress(false);
   };
 
   return (
@@ -98,7 +101,7 @@ function Signup() {
                   secureInput={Data.secureInput}
                 />
               ))}
-              <GenericButton text={"Sign Up"} />
+              <GenericButton text={"Sign Up"} loading={requestInProgress} />
               {showStatusMsg ? (
                 <GenericStatusMessage
                   isError={isStatusError}

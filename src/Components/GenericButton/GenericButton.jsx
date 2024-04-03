@@ -1,3 +1,4 @@
+import LoadingIndicator from "../LoadingIndicator/LoadingIndicator";
 import "./GenericButton.css";
 
 // A generic Button Component for Various Button Usages
@@ -10,6 +11,7 @@ function GenericButton({
   extraBtnText,
   extraBtnOnClick,
   extraBtnStyleType,
+  loading = true,
 }) {
   return (
     <>
@@ -18,8 +20,9 @@ function GenericButton({
           <button
             className={"commonButton" + " " + styleType}
             onClick={onClick}
+            disabled={loading}
           >
-            {text}
+            {loading ? <LoadingIndicator /> : text}
           </button>
           <br />
         </>

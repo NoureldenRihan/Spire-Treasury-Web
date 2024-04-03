@@ -26,6 +26,14 @@
   transform: translateY(-2px);
 }
 
+.commonButton:disabled {
+  cursor: not-allowed;
+}
+
+.commonButton:disabled:hover {
+  transform: translateY(0);
+}
+
 .type1 {
   color: var(--Black);
   background-color: var(--Golden50);
@@ -35,6 +43,10 @@
   background-color: var(--Golden);
 }
 
+.commonButton:disabled:hover.type1 {
+  background-color: var(--Golden50);
+}
+
 .type2 {
   color: var(--Golden);
   background-color: var(--Black20);
@@ -42,6 +54,10 @@
 
 .type2:hover {
   background-color: var(--Black50);
+}
+
+.commonButton:disabled:hover.type2 {
+  background-color: var(--Black20);
 }
 
 .extraType1 {
