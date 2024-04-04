@@ -1,0 +1,63 @@
+.loginPage {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: fit-content;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.loginDescription {
+  font-size: 25px;
+}
+
+.goToLogin {
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
+
+.goToLogin p {
+  display: inline;
+  padding-right: 5px;
+}
+
+.loginForm {
+  width: 30%;
+}
+
+/* Large Screens */
+@media (max-width: 1200px) {
+  .loginForm {
+    width: 40%;
+  }
+}
+
+/* Medium Screens */
+@media (max-width: 900px) {
+  .loginForm {
+    width: 50%;
+  }
+}
+
+/* Small Screens */
+@media (max-width: 650px) {
+  .loginForm {
+    width: 80%;
+  }
+  .goToLogin {
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  .loginDescription {
+    font-size: 20px;
+  }
+}

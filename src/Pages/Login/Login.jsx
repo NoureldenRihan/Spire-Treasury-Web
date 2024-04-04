@@ -6,15 +6,14 @@ import apiHandlers from "../../apiHandlers/apiHandlers";
 import GenericButton from "../../Components/GenericButton/GenericButton";
 import Navbar from "../../Components/Navbar/Navbar";
 import GenericStatusMessage from "../../Components/GenericStatusMessage/GenericStatusMessage";
-import "./Signup.css";
+import "./Login.css";
 
-function Signup() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [fullName, setFullName] = useState("");
+//TODO Setup login and sign up to save data to local storage to prevent every session login
+//TODO Setup Auto Login (After Signup and if credentials are available in local storage)
+
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [specialCode, setSpecialCode] = useState("");
   const [requestInProgress, setRequestInProgress] = useState(false);
   const [showStatusMsg, setShowStatusMsg] = useState(false);
   const [isStatusError, setIsStatusError] = useState(false);
@@ -22,36 +21,28 @@ function Signup() {
 
   // organize state setters and getters for one time addition through a forEach function
   const stateDistributer = [
-    [firstName, setFirstName],
-    [lastName, setLastName],
-    [fullName, setFullName],
     [email, setEmail],
     [password, setPassword],
-    [specialCode, setSpecialCode],
   ];
 
   const navigate = useNavigate();
 
-  // Access User Creation required Data from Redux
-  const createUserData = useSelector((state) => state.createUserData.userData);
+  // Access User Login required Data from Redux
+  const loginUserData = useSelector((state) => state.loginUserData.userData);
 
-  // signup function Groups Form Data and makes a "CreateUser" request through apiHandlers
-  const signup = async (e) => {
+  // login function Groups Form Data and makes a "LoginUser" request through apiHandlers
+  const login = async (e) => {
     e.preventDefault();
     setRequestInProgress(true);
 
-    const signupFormData = {
-      firstName: firstName,
-      lastName: lastName,
-      fullName: fullName,
+    const loginFormData = {
       email: email,
       password: password,
-      specialCode: specialCode,
     };
 
-    console.log(signupFormData);
+    console.log(loginFormData);
 
-    const response = await apiHandlers.CreateUser(signupFormData);
+    const response = await apiHandlers.LoginUser(loginFormData);
     console.log(response);
 
     if (response.status === 200) {
@@ -70,23 +61,23 @@ function Signup() {
   return (
     <>
       <Navbar />
-      <div className="signupPage">
-        <div className="signupContainer">
-          <h2 className="signupDescription">
-            Create your Spire Treasury account
+      <div className="loginPage">
+        <div className="loginContainer">
+          <h2 className="loginDescription">
+            Login to your Spire Treasury account
           </h2>
           <div className="goToLogin">
-            <p>Already Have An Account?</p>
+            <p>Don't Have An Account?</p>
             <GenericButton
               extra={true}
-              extraBtnText={"Login"}
+              extraBtnText={"Sign Up"}
               extraBtnStyleType={"extraType2"}
-              extraBtnOnClick={() => navigate("/login")}
+              extraBtnOnClick={() => navigate("/signup")}
             />
           </div>
 
-          <form onSubmit={signup} className="signupForm">
-            {createUserData.map((Data, index) => (
+          <form onSubmit={login} className="loginForm">
+            {loginUserData.map((Data, index) => (
               <GenericInput
                 key={Data.fieldName}
                 label={Data.fieldName}
@@ -100,7 +91,7 @@ function Signup() {
                 secureInput={Data.secureInput}
               />
             ))}
-            <GenericButton text={"Sign Up"} loading={requestInProgress} />
+            <GenericButton text={"Log In"} loading={requestInProgress} />
           </form>
           {showStatusMsg ? (
             <GenericStatusMessage
@@ -116,4 +107,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default Login;
