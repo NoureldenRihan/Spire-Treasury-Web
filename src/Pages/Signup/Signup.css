@@ -1,7 +1,5 @@
 .signupPage {
-  width: 100vw;
-  overflow: hidden;
-  margin-top: 20px;
+  margin-top: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,10 +8,16 @@
 
 .signupContainer {
   display: flex;
+  flex-direction: column;
+  width: 100%;
   height: fit-content;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.signupDescription {
+  font-size: 25px;
 }
 
 .goToLogin {
@@ -24,4 +28,36 @@
 .goToLogin p {
   display: inline;
   padding-right: 5px;
+}
+
+.signupForm {
+  width: 30%;
+}
+
+/* Large Screens */
+@media (max-width: 1200px) {
+  .signupForm {
+    width: 40%;
+  }
+}
+
+/* Medium Screens */
+@media (max-width: 900px) {
+  .signupForm {
+    width: 50%;
+  }
+}
+
+/* Small Screens */
+@media (max-width: 650px) {
+  .signupForm {
+    width: 80%;
+  }
+  .goToLogin {
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  .signupDescription {
+    font-size: 20px;
+  }
 }

@@ -8,9 +8,6 @@ import GenericButton from "../../Components/GenericButton/GenericButton";
 import Navbar from "../../Components/Navbar/Navbar";
 import GenericStatusMessage from "../../Components/GenericStatusMessage/GenericStatusMessage";
 
-//TODO Make it Responsive for different screen sizes
-//TODO Fix width when error is displayed
-
 function Signup() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -23,7 +20,7 @@ function Signup() {
   const [isStatusError, setIsStatusError] = useState(false);
   const [statusMsg, setStatusMsg] = useState("");
 
-  // organize state setters and getters for one time addition through a forEach
+  // organize state setters and getters for one time addition through a forEach function
   const stateDistributer = [
     [firstName, setFirstName],
     [lastName, setLastName],
@@ -56,6 +53,7 @@ function Signup() {
 
     const response = await apiHandlers.CreateUser(signupFormData);
     console.log(response);
+
     if (response.status === 200) {
       navigate("/home");
     } else if (response.status === 500) {
@@ -74,44 +72,44 @@ function Signup() {
       <Navbar />
       <div className="signupPage">
         <div className="signupContainer">
-          <div>
-            <h2>Create your Spire Treasury account</h2>
-            <div className="goToLogin">
-              <p>Already Have An Account?</p>
-              <GenericButton
-                extra={true}
-                extraBtnText={"Login"}
-                extraBtnStyleType={"extraType2"}
-                extraBtnOnClick={() => navigate("/login")}
-              />
-            </div>
-
-            <form onSubmit={signup} className="signupForm">
-              {createUserData.map((Data, index) => (
-                <GenericInput
-                  key={Data.fieldName}
-                  label={Data.fieldName}
-                  value={stateDistributer[index][0]}
-                  onChange={(e) => {
-                    stateDistributer[index][1](e.target.value);
-                  }}
-                  required={Data.required}
-                  type={Data.fieldType}
-                  placeholderText={Data.placeholderText}
-                  secureInput={Data.secureInput}
-                />
-              ))}
-              <GenericButton text={"Sign Up"} loading={requestInProgress} />
-              {showStatusMsg ? (
-                <GenericStatusMessage
-                  isError={isStatusError}
-                  statusText={statusMsg}
-                />
-              ) : (
-                ""
-              )}
-            </form>
+          <h2 className="signupDescription">
+            Create your Spire Treasury account
+          </h2>
+          <div className="goToLogin">
+            <p>Already Have An Account?</p>
+            <GenericButton
+              extra={true}
+              extraBtnText={"Login"}
+              extraBtnStyleType={"extraType2"}
+              extraBtnOnClick={() => navigate("/login")}
+            />
           </div>
+
+          <form onSubmit={signup} className="signupForm">
+            {createUserData.map((Data, index) => (
+              <GenericInput
+                key={Data.fieldName}
+                label={Data.fieldName}
+                value={stateDistributer[index][0]}
+                onChange={(e) => {
+                  stateDistributer[index][1](e.target.value);
+                }}
+                required={Data.required}
+                type={Data.fieldType}
+                placeholderText={Data.placeholderText}
+                secureInput={Data.secureInput}
+              />
+            ))}
+            <GenericButton text={"Sign Up"} loading={requestInProgress} />
+          </form>
+          {showStatusMsg ? (
+            <GenericStatusMessage
+              isError={isStatusError}
+              statusText={statusMsg}
+            />
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </>
