@@ -64,3 +64,50 @@ nav {
 .option:hover::after {
   width: 100%;
 }
+
+/* Large Screens */
+@media (max-width: 1200px) {
+  .logoContainer a {
+    width: 35%;
+  }
+}
+
+/* Medium Screens */
+@media (max-width: 900px) {
+  .logoContainer {
+    width: 45%;
+  }
+
+  .logoContainer a {
+    width: 40%;
+  }
+
+  .navOptions {
+    width: 55%;
+  }
+
+  .option {
+    margin-left: 20px;
+  }
+}
+
+/* Small Screens */
+@media (max-width: 650px) {
+  .logoContainer {
+    width: 30%;
+  }
+
+  .logoContainer a {
+    width: 90%;
+  }
+
+  .navOptions {
+    width: 70%;
+    margin-right: 5%;
+  }
+
+  .option {
+    font-size: 11px;
+    margin-left: 10px;
+  }
+}
