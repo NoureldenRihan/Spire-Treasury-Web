@@ -6,6 +6,7 @@ import apiHandlers from "../../apiHandlers/apiHandlers";
 import GenericButton from "../../Components/GenericButton/GenericButton";
 import Navbar from "../../Components/Navbar/Navbar";
 import GenericStatusMessage from "../../Components/GenericStatusMessage/GenericStatusMessage";
+import bcrypt from "bcryptjs-react";
 import "./Login.css";
 
 //TODO Setup login and sign up to save data to local storage to prevent every session login
@@ -35,9 +36,13 @@ function Login() {
     e.preventDefault();
     setRequestInProgress(true);
 
+    // Password Hashing
+    const salt = await bcrypt.genSalt(5);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
     const loginFormData = {
       email: email,
-      password: password,
+      password: hashedPassword,
     };
 
     console.log(loginFormData);

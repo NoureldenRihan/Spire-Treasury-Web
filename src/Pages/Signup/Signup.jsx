@@ -6,6 +6,7 @@ import apiHandlers from "../../apiHandlers/apiHandlers";
 import GenericButton from "../../Components/GenericButton/GenericButton";
 import Navbar from "../../Components/Navbar/Navbar";
 import GenericStatusMessage from "../../Components/GenericStatusMessage/GenericStatusMessage";
+import bcrypt from "bcryptjs-react";
 import "./Signup.css";
 
 function Signup() {
@@ -40,12 +41,16 @@ function Signup() {
     e.preventDefault();
     setRequestInProgress(true);
 
+    // Password Hashing
+    const salt = await bcrypt.genSalt(5);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
     const signupFormData = {
       firstName: firstName,
       lastName: lastName,
       fullName: fullName,
       email: email,
-      password: password,
+      password: hashedPassword,
       specialCode: specialCode,
     };
 
