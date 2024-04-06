@@ -6,11 +6,11 @@ import apiHandlers from "../../apiHandlers/apiHandlers";
 import GenericButton from "../../Components/GenericButton/GenericButton";
 import Navbar from "../../Components/Navbar/Navbar";
 import GenericStatusMessage from "../../Components/GenericStatusMessage/GenericStatusMessage";
-import bcrypt from "bcryptjs-react";
+import { FunctionsToolBox } from "../../Functions/FunctionsToolBox";
 import "./Login.css";
 
-//TODO Setup login and sign up to save data to local storage to prevent every session login
-//TODO Setup Auto Login (After Signup and if credentials are available in local storage)
+//TODO FUTURE OBJECTIVE Setup login and sign up to save data to local storage to prevent every session login
+//TODO FUTURE OBJECTIVE Setup Auto Login (After Signup and if credentials are available in local storage)
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -36,13 +36,8 @@ function Login() {
     e.preventDefault();
     setRequestInProgress(true);
 
-    // Password Hashing
-    const salt = await bcrypt.genSalt(5);
-    const hashedPassword = await bcrypt.hash(password, salt);
-
     const loginFormData = {
       email: email,
-      password: hashedPassword,
     };
 
     console.log(loginFormData);
@@ -51,8 +46,19 @@ function Login() {
     console.log(response);
 
     if (response.status === 200) {
-      navigate("/home");
-    } else if (response.status === 500) {
+      // Compare the user entered password the database Hashed Password
+      const isMatch = await FunctionsToolBox.CompareHashedPasswords(
+        password,
+        response.data.dbPasswordHash
+      );
+      if (isMatch) {
+        navigate("/home");
+      } else {
+        setIsStatusError(true);
+        setStatusMsg(response.data.errorComparisonMsg);
+        setShowStatusMsg(true);
+      }
+    } else if (response.status === 500 || response.status === 401) {
       if (response.data.didAnErrorOccur) {
         setIsStatusError(true);
         setStatusMsg(response.data.msg);
