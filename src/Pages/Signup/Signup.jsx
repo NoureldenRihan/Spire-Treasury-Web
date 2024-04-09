@@ -7,6 +7,8 @@ import GenericButton from "../../Components/GenericButton/GenericButton";
 import Navbar from "../../Components/Navbar/Navbar";
 import GenericStatusMessage from "../../Components/GenericStatusMessage/GenericStatusMessage";
 import bcrypt from "bcryptjs-react";
+import AutoLogin from "../../Functions/Single Functions/AutoLogin";
+import { FunctionsToolBox } from "../../Functions/FunctionsToolBox";
 import "./Signup.css";
 
 function Signup() {
@@ -60,7 +62,12 @@ function Signup() {
     console.log(response);
 
     if (response.status === 200) {
-      navigate("/home");
+      await FunctionsToolBox.LocalForageFunctions.saveLoginData(
+        email,
+        password
+      );
+      const nextDestination = await AutoLogin();
+      navigate(nextDestination);
     } else if (response.status === 500) {
       if (response.data.didAnErrorOccur) {
         setIsStatusError(true);

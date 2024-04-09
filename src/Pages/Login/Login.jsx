@@ -9,8 +9,8 @@ import GenericStatusMessage from "../../Components/GenericStatusMessage/GenericS
 import { FunctionsToolBox } from "../../Functions/FunctionsToolBox";
 import "./Login.css";
 
-//TODO FUTURE OBJECTIVE Setup login and sign up to save data to local storage to prevent every session login
-//TODO FUTURE OBJECTIVE Setup Auto Login (After Signup and if credentials are available in local storage)
+//TODO FUTURE OBJECTIVE Setup Auto Login if credentials are available in local storage
+//TODO Setup Signing out
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -52,6 +52,10 @@ function Login() {
         response.data.dbPasswordHash
       );
       if (isMatch) {
+        await FunctionsToolBox.LocalForageFunctions.saveLoginData(
+          email,
+          password
+        );
         navigate("/home");
       } else {
         setIsStatusError(true);
