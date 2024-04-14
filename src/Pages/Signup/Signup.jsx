@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GenericInput from "../../Components/GenericInput/GenericInput";
@@ -9,6 +9,7 @@ import GenericStatusMessage from "../../Components/GenericStatusMessage/GenericS
 import bcrypt from "bcryptjs-react";
 import AutoLogin from "../../Functions/Single Functions/AutoLogin";
 import { FunctionsToolBox } from "../../Functions/FunctionsToolBox";
+import { currentSessionSlice } from "../../Redux/Slices/currentSessionSlice";
 import "./Signup.css";
 
 function Signup() {
@@ -34,6 +35,7 @@ function Signup() {
   ];
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // Access User Creation required Data from Redux
   const createUserData = useSelector((state) => state.createUserData.userData);
@@ -62,6 +64,7 @@ function Signup() {
     console.log(response);
 
     if (response.status === 200) {
+      dispatch(currentSessionSlice.actions.setUserEmail(email));
       await FunctionsToolBox.LocalForageFunctions.saveLoginData(
         email,
         password

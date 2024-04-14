@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GenericInput from "../../Components/GenericInput/GenericInput";
@@ -7,6 +7,7 @@ import GenericButton from "../../Components/GenericButton/GenericButton";
 import Navbar from "../../Components/Navbar/Navbar";
 import GenericStatusMessage from "../../Components/GenericStatusMessage/GenericStatusMessage";
 import { FunctionsToolBox } from "../../Functions/FunctionsToolBox";
+import { currentSessionSlice } from "../../Redux/Slices/currentSessionSlice";
 import "./Login.css";
 
 //TODO FUTURE OBJECTIVE Setup Auto Login if credentials are available in local storage
@@ -27,6 +28,7 @@ function Login() {
   ];
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // Access User Login required Data from Redux
   const loginUserData = useSelector((state) => state.loginUserData.userData);
@@ -52,6 +54,7 @@ function Login() {
         response.data.dbPasswordHash
       );
       if (isMatch) {
+        dispatch(currentSessionSlice.actions.setUserEmail(email));
         await FunctionsToolBox.LocalForageFunctions.saveLoginData(
           email,
           password

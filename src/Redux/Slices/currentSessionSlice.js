@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   userName: "",
+  userEmail: "",
   userData: {},
   darkMode: false,
 };
@@ -12,6 +13,9 @@ export const currentSessionSlice = createSlice({
   reducers: {
     setUserName: (state, action) => {
       state.userName = action.payload;
+    },
+    setUserEmail: (state, action) => {
+      state.userEmail = action.payload;
     },
     setUserData: (state, action) => {
       state.userData = action.payload;
