@@ -11,7 +11,6 @@ import { currentSessionSlice } from "../../Redux/Slices/currentSessionSlice";
 import "./Login.css";
 
 //TODO FUTURE OBJECTIVE Setup Auto Login if credentials are available in local storage
-//TODO Setup Signing out
 
 function Login() {
   const [email, setEmail] = useState("");

@@ -20,6 +20,11 @@ export const currentSessionSlice = createSlice({
     setUserData: (state, action) => {
       state.userData = action.payload;
     },
+    sessionLogout: (state) => {
+      state.userName = "";
+      state.userEmail = "";
+      state.userData = {};
+    },
     setDarkMode: (state, action) => {
       state.darkMode = action.payload;
     },

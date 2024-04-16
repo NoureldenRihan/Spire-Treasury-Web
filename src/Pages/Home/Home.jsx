@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { currentSessionSlice } from "../../Redux/Slices/currentSessionSlice";
 import { FunctionsToolBox } from "../../Functions/FunctionsToolBox";
 import Navbar from "../../Components/Navbar/Navbar";
+import Logout from "../../Components/Logout/Logout";
 import "./Home.css";
 
 function Home() {
@@ -34,6 +35,7 @@ function Home() {
     <>
       <Navbar />
       <h1>Welcome, {userName}</h1>
+      <Logout />
     </>
   );
 }

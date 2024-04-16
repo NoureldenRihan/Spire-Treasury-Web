@@ -24,9 +24,18 @@ async function getLoginData() {
   }
 }
 
+async function logout() {
+  await storage.setItem("loginData", {
+    email: "",
+    password: "",
+  });
+  console.log("Login Data Cleared");
+}
+
 const LocalForageFunctions = {
   saveLoginData,
   getLoginData,
+  logout,
 };
 
 export default LocalForageFunctions;
