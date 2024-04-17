@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { currentSessionSlice } from "../../Redux/Slices/currentSessionSlice";
 import { FunctionsToolBox } from "../../Functions/FunctionsToolBox";
+import { LogoutIcon, UnifiedSVGSize } from "../../Constants/Icons";
 import "./Logout.css";
 
 function Logout() {
@@ -17,7 +18,7 @@ function Logout() {
 
   return (
     <div className="logout" onClick={logout}>
-      logout
+      <LogoutIcon width={UnifiedSVGSize} height={UnifiedSVGSize} />
     </div>
   );
 }
