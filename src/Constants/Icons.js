@@ -13,4 +13,4 @@ export const Eye = eye;
 export const LogoutIcon = logout;
 export const Settings = settings;
 
-//TODO Setup Global Basic SVG Icons styles
+//TODO Setup Global Basic SVG Icons' styles
