@@ -20,11 +20,8 @@ function Login() {
   const [isStatusError, setIsStatusError] = useState(false);
   const [statusMsg, setStatusMsg] = useState("");
 
-  // organize state setters and getters for one time addition through a forEach function
-  const stateDistributer = [
-    [email, setEmail],
-    [password, setPassword],
-  ];
+  // organize state setters for one time addition through a forEach function
+  const stateSetters = [setEmail, setPassword];
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -97,15 +94,10 @@ function Login() {
             {loginUserData.map((Data, index) => (
               <GenericInput
                 key={Data.fieldName}
-                label={Data.fieldName}
-                value={stateDistributer[index][0]}
                 onChange={(e) => {
-                  stateDistributer[index][1](e.target.value);
+                  stateSetters[index](e.target.value);
                 }}
-                required={Data.required}
-                type={Data.fieldType}
-                placeholderText={Data.placeholderText}
-                secureInput={Data.secureInput}
+                {...Data}
               />
             ))}
             <GenericButton text={"Log In"} loading={requestInProgress} />

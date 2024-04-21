@@ -1,4 +1,5 @@
 import currentSessionReducer from "./Slices/currentSessionSlice";
+import createBalanceReducer from "./Slices/ReadOnlySlices/createBalanceSlice";
 import createUserReducer from "./Slices/ReadOnlySlices/createUserSlice";
 import loginUserReducer from "./Slices/ReadOnlySlices/loginUserSlice";
 
@@ -10,4 +11,5 @@ export const reducerCollector = {
   currentSessionData: currentSessionReducer,
   createUserData: createUserReducer,
   loginUserData: loginUserReducer,
+  createBalanceData: createBalanceReducer,
 };

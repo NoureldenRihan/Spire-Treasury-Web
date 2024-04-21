@@ -24,14 +24,14 @@ function Signup() {
   const [isStatusError, setIsStatusError] = useState(false);
   const [statusMsg, setStatusMsg] = useState("");
 
-  // organize state setters and getters for one time addition through a forEach function
-  const stateDistributer = [
-    [firstName, setFirstName],
-    [lastName, setLastName],
-    [fullName, setFullName],
-    [email, setEmail],
-    [password, setPassword],
-    [specialCode, setSpecialCode],
+  // organize state setters for one time addition through a forEach function
+  const stateSetters = [
+    setFirstName,
+    setLastName,
+    setFullName,
+    setEmail,
+    setPassword,
+    setSpecialCode,
   ];
 
   const navigate = useNavigate();
@@ -104,15 +104,10 @@ function Signup() {
             {createUserData.map((Data, index) => (
               <GenericInput
                 key={Data.fieldName}
-                label={Data.fieldName}
-                value={stateDistributer[index][0]}
                 onChange={(e) => {
-                  stateDistributer[index][1](e.target.value);
+                  stateSetters[index](e.target.value);
                 }}
-                required={Data.required}
-                type={Data.fieldType}
-                placeholderText={Data.placeholderText}
-                secureInput={Data.secureInput}
+                {...Data}
               />
             ))}
             <GenericButton text={"Sign Up"} loading={requestInProgress} />

@@ -5,17 +5,17 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   userData: [
     {
-      fieldName: "Email",
-      fieldType: "email",
-      minimumChars: 1,
+      label: "Email",
+      type: "email",
+      inputType: "Normal",
       required: true,
       placeholderText: "Email",
       secureInput: false,
     },
     {
-      fieldName: "Password",
-      fieldType: "password",
-      minimumChars: 8,
+      label: "Password",
+      type: "password",
+      inputType: "Normal",
       required: true,
       placeholderText: "Password",
       secureInput: true,

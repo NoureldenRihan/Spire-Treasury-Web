@@ -11,7 +11,7 @@ export default async function GetUserData(email) {
     console.log("Successfully retrieved user data");
     console.log(response.data);
     return { data: response.data };
-  } else if (response.status === 500) {
+  } else if (response.status === 500 || response.status === 401) {
     console.log("Error Occured while retreiving user data");
     return;
   }

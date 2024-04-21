@@ -7,6 +7,7 @@ const apiRoutes = {
   createUser: devAddress + "/users/signup",
   loginUser: devAddress + "/users/login",
   getSingleUser: devAddress + "/users/user",
+  openBalance: devAddress + "/balances/open",
 };
 
 export default apiRoutes;
