@@ -7,6 +7,7 @@ import GenericButton from "../../Components/GenericButton/GenericButton";
 import Navbar from "../../Components/Navbar/Navbar";
 import GenericStatusMessage from "../../Components/GenericStatusMessage/GenericStatusMessage";
 import "./OpenBalance.css";
+import ValidationErrorMsgs from "../../Constants/ValidationErrorMsgs";
 
 //TODO Every Balance Tier Should show a popup hint to guide users to the difference
 //TODO Show Proper Error Msgs when facing Errors
@@ -37,6 +38,20 @@ function OpenBalance() {
   // OpenBalance function Groups Form Data and makes a "OpenBalance" request through apiHandlers
   const openBalance = async (e) => {
     e.preventDefault();
+
+    // Form Validation
+    if (currentUserAccountNumber === "") {
+      setIsStatusError(true);
+      setStatusMsg(ValidationErrorMsgs.invalidAccountNumber);
+      setShowStatusMsg(true);
+      return;
+    } else if (accountTier === "") {
+      setIsStatusError(true);
+      setStatusMsg(ValidationErrorMsgs.invalidBalanceTier);
+      setShowStatusMsg(true);
+      return;
+    }
+
     setRequestInProgress(true);
 
     const balanceFormData = {
@@ -80,10 +95,20 @@ function OpenBalance() {
                   Data.inputType === "Normal"
                     ? (e) => {
                         stateSetters[index](e.target.value);
+
+                        // Remove Error Msg on InPut Field Change
+                        setIsStatusError(false);
+                        setStatusMsg("");
+                        setShowStatusMsg(false);
                       }
                     : Data.inputType === "Radio"
                     ? (value) => {
                         stateSetters[index](value);
+
+                        // Remove Error Msg on InPut Field Change
+                        setIsStatusError(false);
+                        setStatusMsg("");
+                        setShowStatusMsg(false);
                       }
                     : ""
                 }
