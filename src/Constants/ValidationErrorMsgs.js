@@ -8,6 +8,8 @@ const ValidationErrorMsgs = {
   invalidOpenBalanceAmount: "Invalid Opening Amount",
   invalidBalanceTier: "Invalid Balance Tier",
   invalidAccountNumber: "Invalid Account Number",
+  invalidRecepientAccountNumber: "Invalid Recepient Account Number",
+  invalidTransactionAmount: "Invalid Transaction Amount",
 };
 
 export default ValidationErrorMsgs;
